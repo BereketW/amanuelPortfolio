@@ -11,7 +11,7 @@ export default function Header() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
-    { name: "Works", href: "#works" },
+    { name: "Works", href: "works" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -38,7 +38,7 @@ export default function Header() {
             </motion.span>
           </Link>
 
-          <nav className="hidden md:block">
+          <nav className="hidden  md:block">
             <ul className="flex items-center gap-8">
               {navItems.map((item, index) => (
                 <motion.li
