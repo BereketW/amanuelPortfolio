@@ -24,7 +24,7 @@ import VideoModal from "@/components/video-modal";
 const categories = [
   {
     id: 1,
-    name: "Web Development",
+    name: "Logo Design",
     icon: Code2,
     description: "Full-stack & Frontend Projects",
   },
@@ -42,7 +42,7 @@ const categories = [
   },
   {
     id: 4,
-    name: "Photography",
+    name: "Video Editing & Animation",
     icon: Camera,
     description: "Visual Projects",
   },
@@ -51,90 +51,90 @@ const categories = [
 const portfolioWorks = [
   {
     id: 1,
-    title: "E-commerce Platform",
+    title: "Geda Park",
     description:
-      "A full-stack e-commerce platform built with Next.js and Stripe integration. Features include product listings, cart functionality, user authentication, and payment processing.",
-    categoryId: 1,
+      "A modern recreational park designed to offer a peaceful escape with lush greenery, walking trails, and family-friendly spaces. ",
+    categoryId: 3,
     images: [
-      "/placeholder.svg?height=600&width=800&text=E-commerce+Main",
-      "/placeholder.svg?height=600&width=800&text=Product+Page",
-      "/placeholder.svg?height=600&width=800&text=Checkout+Flow",
-      "/placeholder.svg?height=600&width=800&text=Admin+Dashboard",
+      "/assets/geda.png",
+      "/assets/geda1.png",
+      "/assets/geda2.png",
+      "/assets/geda3.png",
+      "/assets/geda4.png",
+      "/assets/geda5.png",
+      "/assets/geda6.png",
+      "/assets/geda7.png",
+      "/assets/geda8.png",
+      "/assets/geda9.png",
     ],
-    video: "/video.mp4",
+    video: "/assets/video-final.mp4",
     link: "#",
     year: "2024",
-    tools: ["Next.js", "React", "Tailwind CSS", "Stripe"],
-    role: "Full Stack Developer",
-    featured: true,
+    tools: ["Revit", "Sketchup, Lumion, d5, Twinmotion, 3rds max", "Rhino"],
+    role: "Architecture",
+    featured: false,
   },
   {
     id: 2,
-    title: "Travel App Design",
+    title: "Interior Design",
     description:
-      "Mobile app design for a travel planning platform with focus on user experience. The app helps users discover destinations, plan itineraries, and book accommodations seamlessly.",
-    categoryId: 2,
+      "A visionary approach to transforming spaces with style, functionality, and elegance. This project focuses on creating aesthetically pleasing and practical interiors, blending modern trends with personalized touches. ",
+    categoryId: 3,
     images: [
-      "/placeholder.svg?height=600&width=800&text=Travel+App+Home",
-      "/placeholder.svg?height=600&width=800&text=Destination+Details",
-      "/placeholder.svg?height=600&width=800&text=Booking+Interface",
+      "/assets/interior.png",
+      "/assets/interior1.png",
+      "/assets/interior2.png",
+      "/assets/interior4.png",
+      "/assets/interior5.png",
     ],
     link: "#",
     year: "2023",
-    tools: ["Figma", "Protopie", "Adobe CC"],
-    role: "UI/UX Designer",
-    featured: true,
+
+    tools: ["Revit", "Sketchup, Lumion, d5, Twinmotion, 3rds max", "Rhino"],
+    role: "Architect",
+    featured: false,
   },
   {
     id: 3,
-    title: "Eco-Friendly Housing",
+    title: "Hotel Design",
     description:
-      "Sustainable residential project focusing on environmental impact. This architectural design incorporates renewable energy sources, natural materials, and efficient space utilization.",
+      "A sophisticated and functional hotel design that blends luxury, comfort, and efficiency. This project focuses on creating inviting spaces with elegant interiors, seamless layouts, and modern amenities.",
     categoryId: 3,
     images: [
-      "/placeholder.svg?height=600&width=800&text=Housing+Exterior",
-      "/placeholder.svg?height=600&width=800&text=Living+Room",
-      "/placeholder.svg?height=600&width=800&text=Kitchen+Design",
-      "/placeholder.svg?height=600&width=800&text=Bedroom+Suite",
-      "/placeholder.svg?height=600&width=800&text=Garden+View",
+      "/assets/hotel.png",
+      "/assets/hotel1.png",
+      "/assets/hotel2.png",
+      "/assets/hotel3.png",
+      "/assets/hotel4.png",
+      "/assets/hotel5.png",
     ],
     video: "/video.mp4",
     link: "#",
     year: "2023",
     tools: ["AutoCAD", "Revit", "3ds Max"],
-    role: "Lead Architect",
-    featured: true,
+    role: "Architect",
+    featured: false,
   },
   {
     id: 4,
-    title: "Urban Photography",
+    title: "Kasma Digital",
     description:
-      "Series of urban landscape photographs capturing city life. This collection explores the intersection of architecture, human activity, and natural elements in metropolitan environments.",
-    categoryId: 4,
-    images: [
-      "/placeholder.svg?height=600&width=800&text=City+Skyline",
-      "/placeholder.svg?height=600&width=800&text=Street+Life",
-      "/placeholder.svg?height=600&width=800&text=Architecture+Detail",
-      "/placeholder.svg?height=600&width=800&text=Night+Scene",
-    ],
+      "A forward-thinking software development company specializing in building innovative and scalable digital solutions.",
+    categoryId: 1,
+    images: ["/assets/kasma.png", "/assets/kasma1.png"],
     link: "#",
     year: "2024",
-    tools: ["Canon EOS R5", "Adobe Lightroom"],
-    role: "Photographer",
+    tools: ["Adobe Illustrator", "Adobe InDesign", "Figma"],
+    role: "Logo Design",
     featured: false,
   },
   {
     id: 5,
-    title: "Corporate Branding",
+    title: "NetibPixels",
     description:
       "Complete brand identity design for a tech startup, including logo, color palette, typography, and brand guidelines to ensure consistent visual communication across all platforms.",
-    categoryId: 2,
-    images: [
-      "/placeholder.svg?height=600&width=800&text=Logo+Design",
-      "/placeholder.svg?height=600&width=800&text=Brand+Guidelines",
-      "/placeholder.svg?height=600&width=800&text=Stationery+Mockup",
-      "/placeholder.svg?height=600&width=800&text=Digital+Assets",
-    ],
+    categoryId: 1,
+    images: ["/assets/pixel.jpg", "/assets/pixel1.jpg", "/assets/pixel2.jpg"],
     link: "#",
     year: "2023",
     tools: ["Adobe Illustrator", "Adobe InDesign", "Figma"],
@@ -146,7 +146,7 @@ const portfolioWorks = [
     title: "Smart Home System",
     description:
       "IoT-based home automation system with mobile app control. This project integrates various smart devices to create a seamless and energy-efficient living environment.",
-    categoryId: 1,
+    categoryId: 0,
     images: [
       "/placeholder.svg?height=600&width=800&text=Mobile+App+UI",
       "/placeholder.svg?height=600&width=800&text=Smart+Hub+Design",
@@ -534,6 +534,8 @@ export default function PortfolioWorks() {
                                 className="absolute inset-0"
                               >
                                 <Image
+                                  priority
+                                  quality={100}
                                   src={
                                     work.images[currentImageIndex] ||
                                     "/placeholder.svg"
