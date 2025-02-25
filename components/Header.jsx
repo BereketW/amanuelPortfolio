@@ -22,7 +22,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="fixed backdrop-blur-md top-0 left-0 w-full z-50">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <Link
