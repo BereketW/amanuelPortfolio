@@ -6,7 +6,10 @@ import { Send, Github, Linkedin, Twitter } from "lucide-react";
 
 export default function Contact() {
   return (
-    <footer className="bg-gradient-to-b from-background to-background/90 pt-16 pb-8">
+    <footer
+      id="contact"
+      className="bg-gradient-to-b from-background to-background/90 pt-16 pb-8"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
