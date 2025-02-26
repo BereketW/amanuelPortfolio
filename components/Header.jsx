@@ -11,7 +11,7 @@ export default function Header() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
-    { name: "Works", href: "works" },
+    { name: "Works", href: "/works" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -21,8 +21,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   return (
-    <header className="fixed backdrop-blur-md top-0 left-0 w-full z-50">
+    <header className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-sm shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <Link
@@ -38,7 +50,7 @@ export default function Header() {
             </motion.span>
           </Link>
 
-          <nav className="hidden  md:block">
+          <nav className="hidden md:block">
             <ul className="flex items-center gap-8">
               {navItems.map((item, index) => (
                 <motion.li
@@ -74,8 +86,9 @@ export default function Header() {
           </motion.div>
 
           <button
-            className="md:hidden relative z-10 w-10 h-10"
+            className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             <span
               className={`block absolute h-0.5 w-6 bg-current transform transition duration-500 ease-in-out ${
@@ -111,48 +124,59 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-background/90 backdrop-blur-md z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-background shadow-xl p-6 flex flex-col justify-center"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 20, stiffness: 100 }}
+              className="fixed inset-0 h-[100vh] flex flex-col"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {navItems.map((item, index) => (
+              {/* Safe area at the top to avoid overlapping with the header */}
+              <div className="h-20 flex-shrink-0 bg-background/80 backdrop-blur-sm shadow-sm"></div>
+
+              {/* Menu content - using flex-grow to take up all available space */}
+              <div className="flex-grow flex flex-col justify-evenly items-center py-8">
+                <div className="w-full max-w-sm mx-auto">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 + 0.2 }}
+                      className="mb-8"
+                    >
+                      <Link
+                        href={item.href}
+                        className="block text-center py-4 text-3xl font-medium text-foreground hover:text-primary transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
                 <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="w-full max-w-sm mx-auto px-6"
                 >
                   <Link
-                    href={item.href}
-                    className="block py-4 text-2xl font-medium text-muted-foreground hover:text-primary transition-colors"
+                    href="#hire"
+                    className="block w-full text-center rounded-full text-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-16 px-8 py-4"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.name}
+                    Hire Me
                   </Link>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Link
-                  href="#hire"
-                  className="block w-full text-center rounded-full text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 py-2 mt-8"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Hire Me
-                </Link>
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         )}

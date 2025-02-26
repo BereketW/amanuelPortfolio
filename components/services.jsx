@@ -67,6 +67,7 @@ export default function Services() {
                     {service.id.toString().padStart(2, "0")}
                   </span>
                   <motion.div
+                    className=" flex"
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                   >

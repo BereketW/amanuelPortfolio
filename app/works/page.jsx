@@ -20,29 +20,38 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import VideoModal from "@/components/video-modal";
+import { Key } from "lucide-react";
+import { KeyIcon } from "lucide-react";
+import { Lock } from "lucide-react";
 
 const categories = [
   {
     id: 1,
-    name: "Logo Design",
+    name: "Graphic Design",
+    disabled: false,
     icon: Code2,
-    description: "Full-stack & Frontend Projects",
+    description: "Logo Design & Other Graphic Designs",
   },
   {
     id: 2,
     name: "UI/UX Design",
+    disabled: true,
     icon: Palette,
+
     description: "Digital Product Design",
   },
   {
     id: 3,
     name: "Architecture",
+    disabled: false,
     icon: Building2,
     description: "Architectural Projects",
   },
   {
     id: 4,
     name: "Video Editing & Animation",
+    disabled: false,
+
     icon: Camera,
     description: "Visual Projects",
   },
@@ -125,7 +134,7 @@ const portfolioWorks = [
     link: "#",
     year: "2024",
     tools: ["Adobe Illustrator", "Adobe InDesign", "Figma"],
-    role: "Logo Design",
+    role: "Brand Design",
     featured: false,
   },
   {
@@ -138,25 +147,49 @@ const portfolioWorks = [
     link: "#",
     year: "2023",
     tools: ["Adobe Illustrator", "Adobe InDesign", "Figma"],
-    role: "Brand Designer",
+    role: "Logo Designer",
     featured: false,
   },
   {
     id: 6,
-    title: "Smart Home System",
+    title: "Bright Language Center",
     description:
-      "IoT-based home automation system with mobile app control. This project integrates various smart devices to create a seamless and energy-efficient living environment.",
-    categoryId: 0,
+      "A dynamic learning hub dedicated to helping individuals master new languages with confidence. ",
+    categoryId: 1,
     images: [
-      "/placeholder.svg?height=600&width=800&text=Mobile+App+UI",
-      "/placeholder.svg?height=600&width=800&text=Smart+Hub+Design",
-      "/placeholder.svg?height=600&width=800&text=System+Architecture",
+      "/assets/bright.png",
+      "/assets/bright1.png",
+      "/assets/bright2.png",
+      "/assets/bright3.png",
+      "/assets/bright4.png",
+      "/assets/bright5.png",
     ],
     video: "/video.mp4",
     link: "#",
     year: "2024",
-    tools: ["React Native", "Node.js", "MQTT", "Arduino"],
-    role: "IoT Developer",
+    tools: ["Premiere Pro", "After Effect"],
+    role: "Graphic Designer",
+    featured: false,
+  },
+  {
+    id: 7,
+    title: "Flames Food",
+    description:
+      "A vibrant restaurant and food delivery service offering delicious, high-quality meals straight to your doorstep.",
+    categoryId: 1,
+    images: [
+      "/assets/flames.png",
+      "/assets/flames1.png",
+      "/assets/flames2.png",
+      "/assets/flames3.png",
+      "/assets/flames4.png",
+      "/assets/flames5.png",
+    ],
+    video: "/video.mp4",
+    link: "#",
+    year: "2024",
+    tools: ["Premiere Pro", "After Effect"],
+    role: "Graphic Designer",
     featured: false,
   },
 ];
@@ -345,14 +378,21 @@ export default function PortfolioWorks() {
                         if (isMobile) setIsMobileSidebarOpen(false);
                       }}
                       className={cn(
-                        "w-full flex items-center gap-4 p-3 rounded-lg transition-all duration-200",
-                        category.id === selectedCategory
-                          ? "bg-primary text-primary-foreground"
+                        "w-full flex relative items-center gap-4 p-3 rounded-lg transition-all duration-200",
+                        category.id === selectedCategory && !category.disabled
+                          ? "bg-primary/10 text-primary-foreground"
+                          : category.disabled
+                          ? "cursor-not-allowed pointer-events-none"
                           : "hover:bg-accent"
                       )}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
+                      {category.disabled && (
+                        <div className="absolute w-full h-full flex items-center backdrop-blur-sm rounded justify-center top-1/2 bg-primary/10 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                          <Lock />
+                        </div>
+                      )}
                       <category.icon className="h-5 w-5 shrink-0" />
                       <div className="text-left">
                         <p className="font-medium whitespace-nowrap">
@@ -419,6 +459,7 @@ export default function PortfolioWorks() {
                         onClick={(e) => toggleImageGallery(work.id, e)}
                       >
                         <Image
+                          quality={100}
                           src={work.images?.[0] || "/placeholder.svg"}
                           alt={work.title}
                           fill
